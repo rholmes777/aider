@@ -1,5 +1,13 @@
 # Agents.md
 
+## 🧭 Repository Context
+
+- **Default Branch for Codex Tasks**: `codex-docs`
+- **Docs Location**: `docs/`, `codex/`, or root
+- **Codex should ignore branches**: [`main`, `staging`] for documentation tasks
+
+---
+
 ## 🧠 Agent Overview: Documentation & Analysis
 
 This file defines AI agents specialized in understanding, analyzing, and documenting the structure, design, and intent of the codebase. These agents operate in a **read-only or introspective mode** and do not modify source code directly.

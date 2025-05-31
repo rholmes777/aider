@@ -1,0 +1,8 @@
+default_branch: codex-docs
+documentation_path: .
+ignore_branches:
+  - main
+  - staging
+preferred_agents:
+  - AnalyzerAgent
+  - DocGenAgent
