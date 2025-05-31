@@ -3,6 +3,7 @@
 ## 🧭 Repository Context
 
 - **Default Branch for Codex Tasks**: `codex-docs`
+- **Default Base Branch for Pull Requests**: `codex-docs`
 - **Docs Location**: `docs/`, `codex/`, or root
 - **Codex should ignore branches**: [`main`, `staging`] for documentation tasks
 
