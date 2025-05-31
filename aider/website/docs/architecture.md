@@ -1,6 +1,7 @@
 ---
 parent: More info
 nav_order: 470
+has_children: true
 description: Overview of Aider's architecture and key components.
 ---
 
@@ -56,3 +57,17 @@ Aider edits the working tree directly. If `--auto-commit` is enabled, each batch
 - The [usage guide](usage.html) explains the basic workflow.
 - The [git integration](git.html) page details how commits are created.
 - The [edit formats](more/edit-formats.html) page describes the formats supported by different models.
+
+## Additional topics
+
+The pages in the `architecture/` directory dig deeper into specific aspects of Aider's design:
+
+- [Coder hierarchy](architecture/coder-hierarchy.html)
+- [CLI and commands](architecture/cli-and-commands.html)
+- [Memory and context](architecture/memory-and-context.html)
+- [Git workflow](architecture/git-workflow.html)
+- [Voice and help modules](architecture/voice-help.html)
+- [File watching](architecture/watch-files.html)
+- [Infinite output](architecture/infinite-output.html)
+- [Edit formats](architecture/edit-formats.html)
+- [Session resumption & cost tracking](architecture/resumption.html)
