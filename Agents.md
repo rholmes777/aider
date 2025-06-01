@@ -11,7 +11,7 @@
 
 ## 🧠 Agent Overview: Documentation & Analysis
 
-This file defines AI agents specialized in understanding, analyzing, and documenting the structure, design, and intent of the codebase. These agents operate in a **read-only or introspective mode** and do not modify source code directly.
+This file defines AI agents specialized in understanding, analyzing, and documenting the structure, design, and intent of the codebase. These agents operate in a **read-only or introspective mode** with respect to the actual source code, but they do create and modify documentation files.
 
 ---
 
@@ -98,3 +98,4 @@ primary_language: python
 doc_formats: [markdown, mermaid]
 output_directory: docs/
 diagram_formats: [mermaid, svg]
+```
