@@ -1,16 +1,19 @@
 ---
-parent: Architecture
-nav_order: 60
-description: Watching for AI comments in your editor.
+parent: Architecture Overview
+nav_order: 170
 ---
 
-# File watching
+# File Watching Workflow
 
-Running Aider with `--watch-files` activates the `FileWatcher` from
-`aider/watch.py`. It monitors your working tree for comments ending with `AI!` or
-`AI?`. When such markers are detected, the watcher interrupts the CLI prompt and
-collects all matching comments, sending them to the model as instructions or
-questions.
+The `FileWatcher` class (`aider/watch.py`) monitors the repository for lines ending with `AI!` or `AI?`.  When a change is detected, it sets `IO.interrupt_input()` so the main prompt loop stops waiting for user input and processes the request.
 
-This feature makes it easy to use Aider directly from an IDE: simply type AI
-comments in your code, save the file and let the watcher handle the rest.
+```python
+changes = watch(*roots, watch_filter=self.filter_func, stop_event=self.stop_event)
+if self.handle_changes(changes):
+    return
+```
+
+`process_changes()` gathers all AI comments from tracked files and builds a consolidated instruction block.  If any comment ends with `AI!` the coder is asked to edit the code; if it ends with `AI?` the coder answers questions.  The watch mode is often enabled automatically in IDE integrations and can be used alongside clipboard watching.
+
+Corner cases include large files (ignored over 1MB) and paths filtered by `.gitignore` or `.aiderignore`.  The watcher runs on a background thread and can be stopped cleanly via `stop_event`.
+
