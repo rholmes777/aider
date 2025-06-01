@@ -1,15 +1,17 @@
 ---
-parent: Architecture
-nav_order: 50
-description: Optional voice input and offline help search.
+parent: Architecture Overview
+nav_order: 160
 ---
 
-# Voice and help modules
+# Voice Input and Offline Help
 
-The `/voice` command uses the `Voice` class from `aider/voice.py` to record audio
-via `sounddevice`, encode it with `pydub` and transcribe through the active LLM.
-This allows hands-free interaction with the coding session.
+The `/voice` command uses `aider/voice.py` to record audio with the `sounddevice` library and transcribe it via `litellm.transcription` (currently OpenAI Whisper).  The resulting text is inserted into the chat as if the user had typed it.
 
-`aider/help.py` builds a local search index of the documentation using
-`llama_index`. The `/help` command retrieves relevant pages and feeds them into
-an assistant model so users can ask questions offline.
+```python
+text = litellm.transcription(model="whisper-1", file=fh, prompt=history)
+```
+
+The `/help` command loads all markdown files from `aider/website` into a local vector search index (using `llama_index`).  Queries are matched against these documents and returned as context for the model.
+
+Both features are optional extras installed via `pip install aider-chat[voice]` or `[help]`.
+
