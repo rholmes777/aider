@@ -1,15 +1,19 @@
 ---
-parent: Architecture
-nav_order: 90
-description: Recovering from interruptions and tracking token cost.
+parent: Architecture Overview
+nav_order: 130
 ---
 
-# Session resumption and cost tracking
+# Session Resumption and Interrupt Handling
 
-Aider keeps running totals of tokens sent and received in each session. These
-are displayed when the program exits. Models that report pricing allow Aider to
-estimate cost based on token usage.
+Long running edits can be interrupted with `Control‑C`.  When the user sends the interrupt while a model reply is streaming, `base_coder.send_messages()` catches `KeyboardInterrupt` and stops waiting for the response.  The partial text already received stays in the conversation so you can clarify or retry.
 
-If `Control-C` is pressed while waiting for a model reply, the current request is
-cancelled and the prompt returns, preserving any pending edits. Previous chats can
-be restored on startup, ensuring continuity even after a restart or crash.
+If a second `Control‑C` arrives within two seconds, `keyboard_interrupt()` exits immediately.  Otherwise it displays `^C again to exit` and returns to the input loop with any pending edits preserved.
+
+```python
+except KeyboardInterrupt:
+    interrupted = True
+    break
+```
+
+Aider also resumes gracefully if the process exits.  When `--restore-chat-history` is enabled, `InputOutput.read_text(chat_history_file)` loads the previous markdown transcript and `Coder.summarize_start()` condenses it to fit the new session's token budget.  Pending edits are stored in the git working tree; they will be committed on the next successful run.
+
