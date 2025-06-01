@@ -17,3 +17,7 @@ if self.handle_changes(changes):
 
 Corner cases include large files (ignored over 1MB) and paths filtered by `.gitignore` or `.aiderignore`.  The watcher runs on a background thread and can be stopped cleanly via `stop_event`.
 
+
+## Stop events
+
+Background watchers and spinners use a shared pattern for clean shutdown. Each object creates a `threading.Event` called `stop_event` and checks `is_set()` inside its loop. When the CLI or tests call the corresponding `stop()` method, the event is set so the thread can exit. `FileWatcher`, `ClipboardWatcher` (`copypaste.py`) and `WaitingSpinner` (`waiting.py`) all use this mechanism.

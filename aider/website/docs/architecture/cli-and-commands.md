@@ -13,7 +13,7 @@ model = select_default_model(args, io, analytics)
 coder = Coder.create(main_model=model, edit_format=args.edit_format, io=io, ...)
 ```
 
-If `--watch-files` or `--copy-paste` is specified, the CLI attaches a `FileWatcher` or `ClipboardWatcher` so changes in your editor or clipboard can interrupt the prompt and send new instructions.
+If `--watch-files` or `--copy-paste` is specified, the CLI attaches a `FileWatcher` or `ClipboardWatcher` so changes in your editor or clipboard can interrupt the prompt and send new instructions. Both watchers run on background threads and share a `stop_event` so they shut down cleanly when the session ends.
 
 The command system lives in `aider/commands.py`.  `Commands.get_commands()` registers built‑in commands (such as `/add`, `/commit`, `/undo`, `/chat-mode`) and provides tab completion support.  Custom front ends – including the optional browser UI or GUI wrappers – use the same command objects, so new interfaces can be layered on without changing the core coder logic.
 
