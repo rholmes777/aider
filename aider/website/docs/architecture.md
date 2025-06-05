@@ -1,6 +1,6 @@
 ---
-parent: More info
 nav_order: 470
+has_children: true
 description: Overview of Aider's architecture and key components.
 ---
 
@@ -8,7 +8,7 @@ description: Overview of Aider's architecture and key components.
 
 Aider is a command line tool that integrates large language models (LLMs) with local git repositories. It orchestrates the conversation with the LLM, applies edits to the working tree, and automatically commits changes. The design centers around a `Coder` class hierarchy which coordinates repository mapping, chat summarization and model interaction.
 
-```mermaid
+<div class="mermaid">
 graph TD
     A[aider.main] --> B[Coder.create]
     B --> C[RepoMap]
@@ -18,7 +18,7 @@ graph TD
     B --> G[Model]
     D --> H[gitpython]
     F --> I[chat_history.md]
-```
+</div>
 
 ## Key modules
 
@@ -59,14 +59,4 @@ Aider edits the working tree directly. If `--auto-commit` is enabled, each batch
 
 ## In-depth topics
 
-The rest of the architecture documentation lives in the `architecture/` subdirectory:
-
-- [Coder hierarchy](architecture/coder-hierarchy.html)
-- [CLI and command system](architecture/cli-and-commands.html)
-- [Memory and context management](architecture/memory-and-context.html)
-- [Session resumption](architecture/resumption.html)
-- [Git workflow](architecture/git-workflow.html)
-- [Infinite output](architecture/infinite-output.html)
-- [Voice and help modules](architecture/voice-help.html)
-- [File watching](architecture/watch-files.html)
-- [Edit formats](architecture/edit-formats.html)
+The following sections dive deeper into Aider's internal architecture and implementation details.
