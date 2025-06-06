@@ -32,7 +32,7 @@ graph TD
   describes model metadata and integrates with `litellm` for API calls. Each model sets `max_chat_history_tokens` (about 1/16 of its context window) so chat history can be summarized before it grows too large.
 - **RepoMap (`aider/repomap.py`)**
   summarizes important files and identifiers to provide targeted context to the model when editing a large repository.
-- **Chat history (`aider/chat_summary.py`)**
+- **Chat history (`aider/history.py`)**
   compactly summarizes older messages. A background thread is launched when the history exceeds `max_chat_history_tokens`.
 - **Onboarding (`aider/onboarding.py`)**
   selects a default model from available API keys or triggers OpenRouter OAuth if none are found.

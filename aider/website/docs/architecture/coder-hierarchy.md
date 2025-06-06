@@ -7,7 +7,7 @@ nav_order: 100
 
 Aider organizes its prompting logic around a set of `Coder` classes located in `aider/coders/`.  The base class `base_coder.py` manages common behavior such as tracking files in chat, running commands, and interacting with the LLM.  The `Coder.create()` factory picks an appropriate subclass based on the chosen edit format or chat mode.
 
-```
+```bash
 aider/coders/
 ├── base_coder.py
 ├── ask_coder.py

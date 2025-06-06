@@ -9,7 +9,7 @@ Aider must fit messages, repo summaries, and edits into the model's context wind
 
 ## Summarizing Chat History
 
-`ChatSummary` (`aider/chat_summary.py`) runs in a background thread.  When launched via `Coder.summarize_start()`, it condenses `done_messages` into a shorter summary:
+`ChatSummary` (`aider/history.py`) runs in a background thread.  When launched via `Coder.summarize_start()`, it condenses `done_messages` into a shorter summary:
 
 ```python
 def summarize_worker(self):
